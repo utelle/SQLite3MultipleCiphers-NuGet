@@ -1,0 +1,5 @@
+﻿<Project>
+  <ItemGroup Condition="'$(RuntimeIdentifier)' == 'browser-wasm'">
+    <NativeFileReference Include="$(MSBuildThisFileDirectory)..\..\runtimes\browser-wasm\nativeassets\net8.0\sqlite3mc.a" />
+  </ItemGroup>
+</Project>

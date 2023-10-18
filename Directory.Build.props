@@ -1,0 +1,30 @@
+<Project>
+
+  <PropertyGroup>
+    <Version>1.0.0-alpha.1</Version>
+    <Authors>Ulrich Telle, et al.</Authors>
+    <PackageTags>SQLite;Encryption;wxSQLite3</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://utelle.github.io/SQLite3MultipleCiphers/</PackageProjectUrl>
+    <Copyright>Copyright (c) 2023 Ulrich Telle, et al.</Copyright>
+    <PublishRepositoryUrl>True</PublishRepositoryUrl>
+    <PackageReleaseNotes>https://github.com/utelle/SQLite3MultipleCiphers-NuGet/releases</PackageReleaseNotes>
+    <UseArtifactsOutput>True</UseArtifactsOutput>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)key.snk</AssemblyOriginatorKeyFile>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageIcon>Icon.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)SQLite3MultipleCiphersLogo-128x128.png" Pack="True" PackagePath="Icon.png" Visible="False" />
+  </ItemGroup>
+
+</Project>

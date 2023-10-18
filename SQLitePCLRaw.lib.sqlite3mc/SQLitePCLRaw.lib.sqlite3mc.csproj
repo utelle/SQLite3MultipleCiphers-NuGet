@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>Native binaries of the sqlite3mc library. Use SQLitePCLRaw.provider.sqlite3mc to access the library. NOTICE! This package is maintained separately from the SQLitePCLRaw project.</Description>
+    <IncludeBuildOutput>False</IncludeBuildOutput>
+    <IncludeSymbols>False</IncludeSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="buildTransitive\**\*" Pack="True" PackagePath="buildTransitive" />
+    <None Include="lib\**\*" Pack="True" PackagePath="lib" />
+    <None Include="..\cb\bld\bin\sqlite3mc\android\armeabi-v7a\libsqlite3mc.so" Pack="True" PackagePath="runtimes\android-arm\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\android\arm64-v8a\libsqlite3mc.so" Pack="True" PackagePath="runtimes\android-arm64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\android\x86_64\libsqlite3mc.so" Pack="True" PackagePath="runtimes\android-x64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\android\x86\libsqlite3mc.so" Pack="True" PackagePath="runtimes\android-x86\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\wasm\net6.0\sqlite3mc.a" Pack="True" PackagePath="runtimes\browser-wasm\nativeassets\net6.0" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\wasm\net7.0\sqlite3mc.a" Pack="True" PackagePath="runtimes\browser-wasm\nativeassets\net7.0" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\wasm\net8.0\sqlite3mc.a" Pack="True" PackagePath="runtimes\browser-wasm\nativeassets\net8.0" LinkBase="%(PackagePath)" />
+    <!-- TODO: Can we avoid duplicating these files in the .nupkg? -->
+    <None Include="..\cb\bld\bin\sqlite3mc\ios\device\sqlite3mc.a" Pack="True" PackagePath="runtimes\ios-arm\native;runtimes\ios-arm64\native" LinkBase="runtimes\ios-arm64\native" />
+    <None Include="..\cb\bld\bin\sqlite3mc\ios\simulator\sqlite3mc.a" Pack="True" PackagePath="runtimes\iossimulator-arm64\native;runtimes\iossimulator-x64\native;runtimes\iossimulator-x86\native" LinkBase="runtimes\iossimulator-x64\native" />
+    <None Include="..\cb\bld\bin\sqlite3mc\linux\armhf\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-arm\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\linux\arm64\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-arm64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\linux\armsf\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-armel\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\linux\mips64\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-mips64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\linux\musl-armhf\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-musl-arm\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\linux\musl-arm64\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-musl-arm64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\linux\musl-x64\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-musl-x64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\linux\ppc64le\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-ppc64le\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\linux\s390x\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-s390x\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\linux\x64\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-x64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\linux\x86\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-x86\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\maccatalyst\arm64\libsqlite3mc.dylib" Pack="True" PackagePath="runtimes\maccatalyst-arm64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\maccatalyst\x86_64\libsqlite3mc.dylib" Pack="True" PackagePath="runtimes\maccatalyst-x64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\mac\arm64\libsqlite3mc.dylib" Pack="True" PackagePath="runtimes\osx-arm64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\mac\x86_64\libsqlite3mc.dylib" Pack="True" PackagePath="runtimes\osx-x64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\win\v142\plain\arm\sqlite3mc.dll" Pack="True" PackagePath="runtimes\win-arm\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\win\v142\plain\arm64\sqlite3mc.dll" Pack="True" PackagePath="runtimes\win-arm64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\win\v142\plain\x64\sqlite3mc.dll" Pack="True" PackagePath="runtimes\win-x64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\win\v142\plain\x86\sqlite3mc.dll" Pack="True" PackagePath="runtimes\win-x86\native" LinkBase="%(PackagePath)" />
+  </ItemGroup>
+
+</Project>

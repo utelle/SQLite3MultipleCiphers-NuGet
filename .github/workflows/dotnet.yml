@@ -1,0 +1,81 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
+      with:
+        repository: utelle/SQLite3MultipleCiphers-cb
+        ref: sqlite3mc
+        path: cb
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - run: dotnet workload install android ios
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+    - uses: actions/upload-artifact@v3
+      with:
+        name: packages
+        path: artifacts\package\release\
+    - name: Test
+      run: dotnet test Tests\Tests --verbosity normal
+
+  test-alpine:
+    needs: build
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/dotnet/sdk:8.0-alpine
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/download-artifact@v3
+      with:
+        name: packages
+        path: artifacts/package/release/
+    - name: Test
+      run: dotnet test Tests/Tests --verbosity normal
+
+  test-ubuntu:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - uses: actions/download-artifact@v3
+      with:
+        name: packages
+        path: artifacts/package/release/
+    - name: Test
+      run: dotnet test Tests/Tests --verbosity normal
+
+  test-macos:
+    needs: build
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - uses: actions/download-artifact@v3
+      with:
+        name: packages
+        path: artifacts/package/release/
+    - name: Test
+      run: dotnet test Tests/Tests --verbosity normal
