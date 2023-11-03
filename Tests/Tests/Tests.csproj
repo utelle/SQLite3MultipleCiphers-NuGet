@@ -27,4 +27,9 @@
     <PackageReference Include="SQLitePCLRaw.bundle_sqlite3mc" Version="1.0.0-alpha.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="sqlcipher-2.0-beta-testkey.db" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="sqlcipher-4.0-testkey.db" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>
