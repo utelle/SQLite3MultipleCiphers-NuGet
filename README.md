@@ -1,10 +1,26 @@
-# SQLite3 Multiple Ciphers
+# SQLite3 Multiple Ciphers NuGet
 
 ![build status](https://img.shields.io/github/actions/workflow/status/utelle/SQLite3MultipleCiphers-NuGet/dotnet.yml?branch=main) [![latest version](https://img.shields.io/nuget/v/SQLitePCLRaw.bundle_sqlite3mc)](https://www.nuget.org/packages/SQLitePCLRaw.bundle_sqlite3mc) [![downloads](https://img.shields.io/nuget/dt/SQLitePCLRaw.bundle_sqlite3mc)](https://www.nuget.org/packages/SQLitePCLRaw.bundle_sqlite3mc) ![license](https://img.shields.io/github/license/utelle/SQLite3MultipleCiphers-NuGet)
 
 This library provides C#/.NET bindings for [SQLite3 Multiple Ciphers](https://utelle.github.io/SQLite3MultipleCiphers/). It leverages [SQLitePCLRaw](https://github.com/ericsink/SQLitePCL.raw#readme) to create the bindings.
 
-## Installation
+## Table of Contents
+
+- [Version history](#history)
+- [Installation](#install)
+- [Usage](#usage)
+- [Passphrase based database encryption support](#encryption)
+- [Examples for cipher configuration](#examples)
+- [License](#license)
+- [Acknowledgements](#acknowledge)
+- [See also](#references)
+
+## <a name="history" />Version history
+
+* 1.0.0-rc.1 - *November 2023*
+  - Initial release (based on SQLite3 Multiple Ciphers version 1.7.2 and SQLite version 3.43.2)
+
+## <a name="install" />Installation
 
 The latest version is available on [NuGet](https://www.nuget.org/packages/SQLitePCLRaw.bundle_sqlite3mc).
 
@@ -14,7 +30,7 @@ dotnet add package SQLitePCLRaw.bundle_sqlite3mc
 
 :warning: **Warning!** Don't use multiple SQLitePCLRaw bundles in the same project. See the instructions below for details.
 
-## Usage
+## <a name="usage" />Usage
 
 Because the bindings are built using SQLitePCLRaw, you can use them with various .NET libraries.
 
@@ -98,8 +114,44 @@ using (db)
     }
 }
 ```
+## <a name="encryption" />Passphrase based database encryption support
 
-## See also
+This NuGet package supports access to **encrypted** [SQLite](https://www.sqlite.org) databases from .NET applications. It is based on the project [SQLite3 Multiple Ciphers](https://utelle.github.io/SQLite3MultipleCiphers/).
+
+**SQLite3 Multiple Ciphers** is an extension to the public domain version of SQLite that allows applications to read and write encrypted database files. Currently 5 different encryption cipher schemes are supported:
+
+- [wxSQLite3](https://github.com/utelle/wxsqlite3): AES 128 Bit CBC - No HMAC
+- [wxSQLite3](https://github.com/utelle/wxsqlite3): AES 256 Bit CBC - No HMAC
+  Use of the _wxSQLite3_ ciphers is not recommended for new projects.
+- [sqleet](https://github.com/resilar/sqleet): ChaCha20 - Poly1305 HMAC
+  This cipher scheme is currently the _default_ cipher scheme.
+- [SQLCipher](https://www.zetetic.net/sqlcipher/): AES 256 Bit CBC - SHA1/SHA256/SHA512 HMAC
+  All _SQLCipher_ variants (from version 1 up to version 4) can be accessed.
+- [System.Data.SQLite](http://system.data.sqlite.org): RC4
+  Supported for compatibility with earlier _System.Data.SQLite_ versions only. Don't use it in new projects. Since early 2020 the official **System.Data.SQLite** distribution no longer includes the RC4 encryption extension.
+
+In addition to reading and writing encrypted database files it is also possible to read and write plain unencrypted database files.
+
+**SQLite3 Multiple Ciphers** transparently encrypts the entire database file, so that an encrypted SQLite database file appears to be white noise to an outside observer. Not only the database files themselves, but also journal files are encrypted.
+
+For a detailed documentation of the currently supported cipher schemes, their configuration options, and the SQL interface please consult the [SQLite3MultipleCiphers website](https://utelle.github.io/SQLite3MultipleCiphers/).
+
+## <a name="examples" />Examples for cipher configuration
+
+_**TODO**_
+
+## <a name="license" />License
+
+**SQLite3 Multiple Ciphers NuGet** is free software and is licensed under the [MIT license](LICENSE).
+
+## <a name="acknowledge" />Acknowledgements
+
+The following people have contributed to **SQLite3 Multiple Ciphers NuGet**:
+
+- [Brice Lambson](https://github.com/bricelam)
+- [Josh Menzel](https://github.com/jammerxd)
+
+## <a name="references" />See also
 
 - [SQLite3 Multiple Ciphers](https://utelle.github.io/SQLite3MultipleCiphers/)
 - [Microsoft.Data.Sqlite](https://learn.microsoft.com/dotnet/standard/data/sqlite/)
