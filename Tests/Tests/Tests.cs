@@ -1,3 +1,4 @@
+using System.Reflection;
 using Dapper;
 using Microsoft.Data.Sqlite;
 
@@ -56,6 +57,32 @@ public class Tests : IDisposable
         var value = connection.ExecuteScalar<int>("select count(*) from t1");
 
         Assert.Equal(38768, value);
+    }
+
+    [Fact]
+    public void SQLite3MC_version_matches()
+    {
+        using var connection = new SqliteConnection("Data Source=:memory:");
+        var expected = connection.ExecuteScalar<string>("select substr(sqlite3mc_version(), 26)");
+
+        var actual = typeof(Tests).Assembly.GetCustomAttributes<AssemblyMetadataAttribute>()
+            .SingleOrDefault(a => a.Key == "Sqlite3MCVersion")
+            ?.Value;
+
+        Assert.Equal(expected, actual);
+    }
+
+    [Fact]
+    public void SQLite_version_matches()
+    {
+        using var connection = new SqliteConnection("Data Source=:memory:");
+        var expected = connection.ExecuteScalar<string>("select sqlite_version()");
+
+        var actual = typeof(Tests).Assembly.GetCustomAttributes<AssemblyMetadataAttribute>()
+            .SingleOrDefault(a => a.Key == "SQLiteVersion")
+            ?.Value;
+
+        Assert.Equal(expected, actual);
     }
 
     public void Dispose()

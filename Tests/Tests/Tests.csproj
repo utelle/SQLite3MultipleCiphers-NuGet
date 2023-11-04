@@ -24,7 +24,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SQLitePCLRaw.bundle_sqlite3mc" Version="1.0.0-alpha.1" />
+    <AssemblyMetadata Include="Sqlite3MCVersion" Value="$(Sqlite3MCVersion)" />
+    <AssemblyMetadata Include="SQLiteVersion" Value="$(SQLiteVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SQLitePCLRaw.bundle_sqlite3mc" Version="$(Sqlite3MCNuGetVersion)" />
   </ItemGroup>
 
   <ItemGroup>
