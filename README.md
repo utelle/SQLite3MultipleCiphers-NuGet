@@ -164,7 +164,7 @@ using var connection = new SqliteConnection("Data Source=file:example.db?cipher=
 
 If you want to access a database created for example by _System.Data.SQLite_, it is again necessary to configure the cipher scheme on establishing the database connection.
 
-The easiest approach to accomplish this is to specify the data source in the connection string as a _Uniform Resource Identifier_ (URI) including the required configuration parameters as URI parameters. In case of _SQLCipher_ two configuration parameters are required:
+The easiest approach to accomplish this is to specify the data source in the connection string as a _Uniform Resource Identifier_ (URI) including the required configuration parameters as URI parameters. In case of _System.Data.SQLITE_ RC4 one or two configuration parameters are required:
 
 1. `cipher=rc4` - select the _System.Data.SQLITE_ RC4 cipher scheme
 2. `legacy_page_size=<page size in bytes>` - optional, if the database uses the default SQLite page size (currently **4096** bytes); required, if a non-default page size is used.
