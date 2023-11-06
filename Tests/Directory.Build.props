@@ -1,1 +1,3 @@
-<Project />
+<Project>
+  <Import Project="..\Versions.props" />
+</Project>

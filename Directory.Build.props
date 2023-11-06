@@ -1,7 +1,9 @@
 <Project>
 
+  <Import Project="Versions.props" />
+
   <PropertyGroup>
-    <Version>1.0.0-alpha.1</Version>
+    <Version>$(Sqlite3MCNuGetVersion)</Version>
     <Authors>Ulrich Telle, et al.</Authors>
     <PackageTags>SQLite;Encryption;wxSQLite3</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

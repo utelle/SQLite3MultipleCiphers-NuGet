@@ -5,7 +5,7 @@
     <AssemblyName>SQLitePCLRaw.batteries_v2</AssemblyName>
     <RootNamespace>SQLitePCL</RootNamespace>
     <PackageId>$(MSBuildProjectName)</PackageId>
-    <Description>A SQLitePCLRaw bundle for SQLite3 Multiple Ciphers--an encryption extension for SQLite with support for multiple ciphers. NOTICE! This package is maintained separately from the SQLitePCLRaw project.</Description>
+    <Description>A SQLitePCLRaw bundle for SQLite3 Multiple Ciphers--an encryption extension for SQLite with support for multiple ciphers. Includes SQLite3 Multiple Ciphers $(Sqlite3MCVersion), based on SQLite $(SQLiteVersion). NOTICE! This package is maintained separately from the SQLitePCLRaw project.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
