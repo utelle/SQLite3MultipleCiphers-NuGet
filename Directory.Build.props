@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Version>$(Sqlite3MCNuGetVersion)</Version>
     <Authors>Ulrich Telle, et al.</Authors>
-    <PackageTags>SQLite;Encryption;wxSQLite3</PackageTags>
+    <PackageTags>SQLite;Encryption;wxSQLite3;SQLCipher</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://utelle.github.io/SQLite3MultipleCiphers/</PackageProjectUrl>
     <Copyright>Copyright (c) 2023 Ulrich Telle, et al.</Copyright>
