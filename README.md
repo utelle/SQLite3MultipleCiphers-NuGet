@@ -1,12 +1,14 @@
 # SQLite3 Multiple Ciphers NuGet
 
-![build status](https://img.shields.io/github/actions/workflow/status/utelle/SQLite3MultipleCiphers-NuGet/dotnet.yml?branch=main) [![latest version](https://img.shields.io/nuget/v/SQLitePCLRaw.bundle_sqlite3mc)](https://www.nuget.org/packages/SQLitePCLRaw.bundle_sqlite3mc) [![downloads](https://img.shields.io/nuget/dt/SQLitePCLRaw.bundle_sqlite3mc)](https://www.nuget.org/packages/SQLitePCLRaw.bundle_sqlite3mc) ![license](https://img.shields.io/github/license/utelle/SQLite3MultipleCiphers-NuGet)
+![build status](https://img.shields.io/github/actions/workflow/status/utelle/SQLite3MultipleCiphers-NuGet/dotnet.yml?branch=main) [![latest version](https://img.shields.io/nuget/v/SQLitePCLRaw.bundle_e_sqlite3mc)](https://www.nuget.org/packages/SQLitePCLRaw.bundle_e_sqlite3mc) [![downloads](https://img.shields.io/nuget/dt/SQLitePCLRaw.bundle_e_sqlite3mc)](https://www.nuget.org/packages/SQLitePCLRaw.bundle_e_sqlite3mc) ![license](https://img.shields.io/github/license/utelle/SQLite3MultipleCiphers-NuGet)
 
 This library provides C#/.NET bindings for [SQLite3 Multiple Ciphers](https://utelle.github.io/SQLite3MultipleCiphers/). It leverages [SQLitePCLRaw](https://github.com/ericsink/SQLitePCL.raw#readme) to create the bindings.
 
+In teamwork with [Brice Lambson](https://github.com/bricelam) and [Eric Sink](https://github.com/ericsink) this library has been made a part of the main [SQLitePCLRaw](https://github.com/ericsink/SQLitePCL.raw) project and is released as NuGet package [SQLitePCLRaw.bundle_e_sqlite3mc](https://www.nuget.org/packages/SQLitePCLRaw.bundle_e_sqlite3mc). 
+
 ## Table of Contents
 
-- [Version history](#history)
+- [Version](#history)
 - [Installation](#install)
 - [Usage](#usage)
 - [Passphrase based database encryption support](#encryption)
@@ -15,14 +17,13 @@ This library provides C#/.NET bindings for [SQLite3 Multiple Ciphers](https://ut
 - [Acknowledgements](#acknowledge)
 - [See also](#references)
 
-## <a name="history" />Version history
+## <a name="history" />Version
 
-* 1.0.0-rc.1 - *November 2023*
-  - Initial release (based on SQLite3 Multiple Ciphers version 1.7.2 and SQLite version 3.43.2)
+* [![latest version](https://img.shields.io/nuget/v/SQLitePCLRaw.bundle_e_sqlite3mc)](https://www.nuget.org/packages/SQLitePCLRaw.bundle_e_sqlite3mc)
 
 ## <a name="install" />Installation
 
-The latest version is available on [NuGet](https://www.nuget.org/packages/SQLitePCLRaw.bundle_sqlite3mc).
+The latest version is available on [NuGet](https://www.nuget.org/packages/SQLitePCLRaw.bundle_e_sqlite3mc).
 
 ```sh
 dotnet add package SQLitePCLRaw.bundle_sqlite3mc
@@ -185,9 +186,12 @@ The following people have contributed to **SQLite3 Multiple Ciphers NuGet**:
 
 - [Brice Lambson](https://github.com/bricelam)
 - [Josh Menzel](https://github.com/jammerxd)
+- [Eric Sink](https://github.com/ericsink)
+- [Ulrich Telle](https://github.com/utelle)
 
 ## <a name="references" />See also
 
 - [SQLite3 Multiple Ciphers](https://utelle.github.io/SQLite3MultipleCiphers/)
 - [Microsoft.Data.Sqlite](https://learn.microsoft.com/dotnet/standard/data/sqlite/)
 - [SQLite-net](https://github.com/praeclarum/sqlite-net#readme)
+- [More SQLite Encryption in .NET](https://www.bricelam.net/2023/11/10/more-sqlite-encryption.html)
