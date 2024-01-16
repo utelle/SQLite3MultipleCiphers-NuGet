@@ -122,11 +122,16 @@ This NuGet package supports access to **encrypted** [SQLite](https://www.sqlite.
 **SQLite3 Multiple Ciphers** is an extension to the public domain version of SQLite that allows applications to read and write encrypted database files. Currently 5 different encryption cipher schemes are supported:
 
 - [wxSQLite3](https://github.com/utelle/wxsqlite3): AES 128 Bit CBC - No HMAC
-- [wxSQLite3](https://github.com/utelle/wxsqlite3): AES 256 Bit CBC - No HMAC<br>Use of the _wxSQLite3_ ciphers is not recommended for new projects.
-- [sqleet](https://github.com/resilar/sqleet): ChaCha20 - Poly1305 HMAC
-  This cipher scheme is currently the _default_ cipher scheme.
-- [SQLCipher](https://www.zetetic.net/sqlcipher/): AES 256 Bit CBC - SHA1/SHA256/SHA512 HMAC<br>All _SQLCipher_ variants (from version 1 up to version 4) can be accessed.
-- [System.Data.SQLite](http://system.data.sqlite.org): RC4<br>Supported for compatibility with earlier _System.Data.SQLite_ versions only. Don't use it in new projects. Since early 2020 the official **System.Data.SQLite** distribution no longer includes the RC4 encryption extension.
+- [wxSQLite3](https://github.com/utelle/wxsqlite3): AES 256 Bit CBC - No HMAC  
+Use of the _wxSQLite3_ ciphers is not recommended for new projects.
+- [sqleet](https://github.com/resilar/sqleet): ChaCha20 - Poly1305 HMAC  
+This cipher scheme is currently the _default_ cipher scheme.
+- [SQLCipher](https://www.zetetic.net/sqlcipher/): AES 256 Bit CBC - SHA1/SHA256/SHA512 HMAC  
+All _SQLCipher_ variants (from version 1 up to version 4) can be accessed.
+- [System.Data.SQLite](http://system.data.sqlite.org): RC4  
+Supported for compatibility with earlier _System.Data.SQLite_ versions only. Don't use it in new projects. Since early 2020 the official **System.Data.SQLite** distribution no longer includes the RC4 encryption extension.
+- [Ascon](https://ascon.iaik.tugraz.at/): Ascon-128 v1.2  
+_Ascon_ has been [selected as new standard](https://csrc.nist.gov/News/2023/lightweight-cryptography-nist-selects-ascon) for [lightweight cryptography](https://csrc.nist.gov/projects/lightweight-cryptography) in the [NIST Lightweight Cryptography competition (2019–2023)](https://csrc.nist.gov/projects/lightweight-cryptography/finalists).
 
 In addition to reading and writing encrypted database files it is also possible to read and write plain unencrypted database files.
 
