@@ -39,7 +39,7 @@ public class Tests : IDisposable
     {
         // Test to access database encrypted with SQLCipher version 4
         // Result: 78536 1 1 one one 1 2 one two
-        using var connection = new SqliteConnection("Data Source=file:sqlcipher-4.0-testkey.db?cipher=sqlcipher&legacy=4;Password=testkey");
+        using var connection = new SqliteConnection("Data Source=file:sqlcipher-4.0-testkey.db?cipher=sqlcipher&legacy=4&key=testkey");
 
         var value = connection.ExecuteScalar<int>("select count(*) from t1");
 
@@ -52,7 +52,7 @@ public class Tests : IDisposable
         // Test to access database encrypted with SQLCipher version 2
         // using 4000 iterations for the HMAC key derivation and a HMAC salt mask of zero
         // Result: 38768 test-0-0 test-0-1 test-1-0 test-1-1
-        using var connection = new SqliteConnection("Data Source=file:sqlcipher-2.0-beta-testkey.db?cipher=sqlcipher&legacy=2&fast_kdf_iter=4000&hmac_salt_mask=0;Password=testkey");
+        using var connection = new SqliteConnection("Data Source=file:sqlcipher-2.0-beta-testkey.db?cipher=sqlcipher&legacy=2&fast_kdf_iter=4000&hmac_salt_mask=0&key=testkey");
 
         var value = connection.ExecuteScalar<int>("select count(*) from t1");
 
