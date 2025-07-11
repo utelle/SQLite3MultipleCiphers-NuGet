@@ -35,10 +35,10 @@
     <None Include="..\cb\bld\bin\sqlite3mc\maccatalyst\x86_64\libsqlite3mc.dylib" Pack="True" PackagePath="runtimes\maccatalyst-x64\native" LinkBase="%(PackagePath)" />
     <None Include="..\cb\bld\bin\sqlite3mc\mac\arm64\libsqlite3mc.dylib" Pack="True" PackagePath="runtimes\osx-arm64\native" LinkBase="%(PackagePath)" />
     <None Include="..\cb\bld\bin\sqlite3mc\mac\x86_64\libsqlite3mc.dylib" Pack="True" PackagePath="runtimes\osx-x64\native" LinkBase="%(PackagePath)" />
-    <None Include="..\cb\bld\bin\sqlite3mc\win\v142\plain\arm\sqlite3mc.dll" Pack="True" PackagePath="runtimes\win-arm\native" LinkBase="%(PackagePath)" />
-    <None Include="..\cb\bld\bin\sqlite3mc\win\v142\plain\arm64\sqlite3mc.dll" Pack="True" PackagePath="runtimes\win-arm64\native" LinkBase="%(PackagePath)" />
-    <None Include="..\cb\bld\bin\sqlite3mc\win\v142\plain\x64\sqlite3mc.dll" Pack="True" PackagePath="runtimes\win-x64\native" LinkBase="%(PackagePath)" />
-    <None Include="..\cb\bld\bin\sqlite3mc\win\v142\plain\x86\sqlite3mc.dll" Pack="True" PackagePath="runtimes\win-x86\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\win\v143\plain\arm\sqlite3mc.dll" Pack="True" PackagePath="runtimes\win-arm\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\win\v143\plain\arm64\sqlite3mc.dll" Pack="True" PackagePath="runtimes\win-arm64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\win\v143\plain\x64\sqlite3mc.dll" Pack="True" PackagePath="runtimes\win-x64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\win\v143\plain\x86\sqlite3mc.dll" Pack="True" PackagePath="runtimes\win-x86\native" LinkBase="%(PackagePath)" />
   </ItemGroup>
 
 </Project>
