@@ -8,7 +8,7 @@
     <PackageTags>SQLite;Encryption;wxSQLite3;SQLCipher</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://utelle.github.io/SQLite3MultipleCiphers/</PackageProjectUrl>
-    <Copyright>Copyright (c) 2023-2024 Ulrich Telle, et al.</Copyright>
+    <Copyright>Copyright (c) 2023-2025 Ulrich Telle, et al.</Copyright>
     <PublishRepositoryUrl>True</PublishRepositoryUrl>
     <PackageReleaseNotes>https://github.com/utelle/SQLite3MultipleCiphers-NuGet/releases</PackageReleaseNotes>
     <UseArtifactsOutput>True</UseArtifactsOutput>
