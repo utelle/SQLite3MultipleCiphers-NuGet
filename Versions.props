@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
-    <Sqlite3MCNuGetVersion>1.0.0-rc.13</Sqlite3MCNuGetVersion>
-    <Sqlite3MCVersion>2.2.4</Sqlite3MCVersion>
-    <SQLiteVersion>3.50.4</SQLiteVersion>
+    <Sqlite3MCNuGetVersion>1.0.0-rc.14</Sqlite3MCNuGetVersion>
+    <Sqlite3MCVersion>2.2.5</Sqlite3MCVersion>
+    <SQLiteVersion>3.51.0</SQLiteVersion>
   </PropertyGroup>
 </Project>
