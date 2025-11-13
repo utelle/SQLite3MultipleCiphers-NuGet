@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQLitePCLRaw.bundle_sqlite3mc", "SQLitePCLRaw.bundle_sqlite3mc\SQLitePCLRaw.bundle_sqlite3mc.csproj", "{B57F2C9B-4AAB-4528-AF7D-E204813B5A1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQLite3MC.PCLRaw.bundle", "SQLite3MC.PCLRaw.bundle\SQLite3MC.PCLRaw.bundle.csproj", "{B57F2C9B-4AAB-4528-AF7D-E204813B5A1D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQLitePCLRaw.provider.sqlite3mc", "SQLitePCLRaw.provider.sqlite3mc\SQLitePCLRaw.provider.sqlite3mc.csproj", "{DE1611FE-BB79-4AE1-B03B-78E5F97777C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQLite3MC.PCLRaw.provider", "SQLite3MC.PCLRaw.provider\SQLite3MC.PCLRaw.provider.csproj", "{DE1611FE-BB79-4AE1-B03B-78E5F97777C8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQLitePCLRaw.lib.sqlite3mc", "SQLitePCLRaw.lib.sqlite3mc\SQLitePCLRaw.lib.sqlite3mc.csproj", "{C7324EA9-405E-46F5-ACBE-415C39F953F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQLite3MC.PCLRaw.lib", "SQLite3MC.PCLRaw.lib\SQLite3MC.PCLRaw.lib.csproj", "{C7324EA9-405E-46F5-ACBE-415C39F953F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6A4F1630-82BB-48AB-A8DD-4E43A2598EBF}"
 	ProjectSection(SolutionItems) = preProject

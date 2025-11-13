@@ -1,10 +1,8 @@
 # SQLite3 Multiple Ciphers NuGet
 
-![build status](https://img.shields.io/github/actions/workflow/status/utelle/SQLite3MultipleCiphers-NuGet/dotnet.yml?branch=main) [![latest version](https://img.shields.io/nuget/v/SQLitePCLRaw.bundle_e_sqlite3mc)](https://www.nuget.org/packages/SQLitePCLRaw.bundle_e_sqlite3mc) [![downloads](https://img.shields.io/nuget/dt/SQLitePCLRaw.bundle_e_sqlite3mc)](https://www.nuget.org/packages/SQLitePCLRaw.bundle_e_sqlite3mc) ![license](https://img.shields.io/github/license/utelle/SQLite3MultipleCiphers-NuGet)
+![build status](https://img.shields.io/github/actions/workflow/status/utelle/SQLite3MultipleCiphers-NuGet/dotnet.yml?branch=main) [![latest version](https://img.shields.io/nuget/v/SQLite3MC.PCLRaw.bundle)](https://www.nuget.org/packages/SQLite3MC.PCLRaw.bundle) [![downloads](https://img.shields.io/nuget/dt/SQLite3MC.PCLRaw.bundle)](https://www.nuget.org/packages/SQLite3MC.PCLRaw.bundleqlite3mc) ![license](https://img.shields.io/github/license/utelle/SQLite3MultipleCiphers-NuGet)
 
 This library provides C#/.NET bindings for [SQLite3 Multiple Ciphers](https://utelle.github.io/SQLite3MultipleCiphers/). It leverages [SQLitePCLRaw](https://github.com/ericsink/SQLitePCL.raw#readme) to create the bindings.
-
-In teamwork with [Brice Lambson](https://github.com/bricelam) and [Eric Sink](https://github.com/ericsink) this library has been made a part of the main [SQLitePCLRaw](https://github.com/ericsink/SQLitePCL.raw) project and is released as NuGet package [SQLitePCLRaw.bundle_e_sqlite3mc](https://www.nuget.org/packages/SQLitePCLRaw.bundle_e_sqlite3mc). 
 
 ## Table of Contents
 
@@ -19,14 +17,14 @@ In teamwork with [Brice Lambson](https://github.com/bricelam) and [Eric Sink](ht
 
 ## <a name="history" />Version
 
-* [![latest version](https://img.shields.io/nuget/v/SQLitePCLRaw.bundle_e_sqlite3mc)](https://www.nuget.org/packages/SQLitePCLRaw.bundle_e_sqlite3mc)
+* [![latest version](https://img.shields.io/nuget/v/SQLite3MC.PCLRaw.bundle)](https://www.nuget.org/packages/SQLite3MC.PCLRaw.bundle)
 
 ## <a name="install" />Installation
 
-The latest version is available on [NuGet](https://www.nuget.org/packages/SQLitePCLRaw.bundle_e_sqlite3mc).
+The latest version is available on [NuGet](https://www.nuget.org/packages/SQLite3MC.PCLRaw.bundle).
 
 ```sh
-dotnet add package SQLitePCLRaw.bundle_sqlite3mc
+dotnet add package SQLite3MC.PCLRaw.bundle
 ```
 
 :warning: **Warning!** Don't use multiple SQLitePCLRaw bundles in the same project. See the instructions below for details.

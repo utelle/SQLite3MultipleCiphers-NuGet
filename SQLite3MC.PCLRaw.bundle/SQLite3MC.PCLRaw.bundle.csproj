@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SQLitePCLRaw.batteries_v2</AssemblyName>
+    <RootNamespace>SQLitePCL</RootNamespace>
+    <PackageId>$(MSBuildProjectName)</PackageId>
+    <Description>A SQLitePCLRaw bundle for SQLite3 Multiple Ciphers--an encryption extension for SQLite with support for multiple ciphers. Includes SQLite3 Multiple Ciphers $(Sqlite3MCVersion), based on SQLite $(SQLiteVersion).</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SQLite3MC.PCLRaw.lib\SQLite3MC.PCLRaw.lib.csproj" />
+    <ProjectReference Include="..\SQLite3MC.PCLRaw.provider\SQLite3MC.PCLRaw.provider.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="True" PackagePath="" />
+  </ItemGroup>
+
+</Project>
