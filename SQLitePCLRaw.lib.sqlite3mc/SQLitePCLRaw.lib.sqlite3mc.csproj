@@ -17,6 +17,8 @@
     <None Include="..\cb\bld\bin\sqlite3mc\wasm\net6.0\sqlite3mc.a" Pack="True" PackagePath="runtimes\browser-wasm\nativeassets\net6.0" LinkBase="%(PackagePath)" />
     <None Include="..\cb\bld\bin\sqlite3mc\wasm\net7.0\sqlite3mc.a" Pack="True" PackagePath="runtimes\browser-wasm\nativeassets\net7.0" LinkBase="%(PackagePath)" />
     <None Include="..\cb\bld\bin\sqlite3mc\wasm\net8.0\sqlite3mc.a" Pack="True" PackagePath="runtimes\browser-wasm\nativeassets\net8.0" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\wasm\net9.0\sqlite3mc.a" Pack="True" PackagePath="runtimes\browser-wasm\nativeassets\net9.0" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\wasm\net10.0\sqlite3mc.a" Pack="True" PackagePath="runtimes\browser-wasm\nativeassets\net10.0" LinkBase="%(PackagePath)" />
     <!-- TODO: Can we avoid duplicating these files in the .nupkg? -->
     <None Include="..\cb\bld\bin\sqlite3mc\ios\device\sqlite3mc.a" Pack="True" PackagePath="runtimes\ios-arm\native;runtimes\ios-arm64\native" LinkBase="runtimes\ios-arm64\native" />
     <None Include="..\cb\bld\bin\sqlite3mc\ios\simulator\sqlite3mc.a" Pack="True" PackagePath="runtimes\iossimulator-arm64\native;runtimes\iossimulator-x64\native;runtimes\iossimulator-x86\native" LinkBase="runtimes\iossimulator-x64\native" />
