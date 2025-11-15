@@ -5,6 +5,7 @@ This library provides C#/.NET bindings for [SQLite3 Multiple Ciphers](https://ut
 ## Table of Contents
 
 - [Version history](#version-history)
+- [Installation](#installation)
 - [Usage](#usage)
 - [Passphrase based database encryption support](#passphrase-based-database-encryption-support)
 - [Examples for cipher configuration](#examples-for-cipher-configuration)
@@ -14,14 +15,22 @@ This library provides C#/.NET bindings for [SQLite3 Multiple Ciphers](https://ut
 
 ## Version history
 
-* 1.0.0-rc.14 - *November 2025*
+* 2.2.5.0-rc.1 - *November 2025*
   - Update to SQLite3 Multiple Ciphers version 2.2.5 and SQLite version 3.51.0
+
+## Installation
+
+The latest version is available on [NuGet](https://www.nuget.org/packages/SQLite3MC.PCLRaw.bundle).
+
+```sh
+dotnet add package SQLite3MC.PCLRaw.bundle
+```
+
+:warning: **Warning!** Don't use multiple SQLitePCLRaw bundles in the same project. See the instructions below for details.
 
 ## Usage
 
 Because the bindings are built using SQLitePCLRaw, you can use them with various .NET libraries.
-
-:warning: **Warning!** Don't use multiple SQLitePCLRaw bundles in the same project.
 
 ### Microsoft.Data.Sqlite
 
@@ -107,7 +116,7 @@ using (db)
 
 This NuGet package supports access to **encrypted** [SQLite](https://www.sqlite.org) databases from .NET applications. It is based on the project [SQLite3 Multiple Ciphers](https://utelle.github.io/SQLite3MultipleCiphers/).
 
-**SQLite3 Multiple Ciphers** is an extension to the public domain version of SQLite that allows applications to read and write encrypted database files. Currently 5 different encryption cipher schemes are supported:
+**SQLite3 Multiple Ciphers** is an extension to the public domain version of SQLite that allows applications to read and write encrypted database files. Currently 7 different encryption cipher schemes are supported:
 
 - [wxSQLite3](https://github.com/utelle/wxsqlite3): AES 128 Bit CBC - No HMAC
 - [wxSQLite3](https://github.com/utelle/wxsqlite3): AES 256 Bit CBC - No HMAC  
@@ -118,6 +127,10 @@ This cipher scheme is currently the _default_ cipher scheme.
 All _SQLCipher_ variants (from version 1 up to version 4) can be accessed.
 - [System.Data.SQLite](http://system.data.sqlite.org): RC4  
 Supported for compatibility with earlier _System.Data.SQLite_ versions only. Don't use it in new projects. Since early 2020 the official **System.Data.SQLite** distribution no longer includes the RC4 encryption extension.
+- [Ascon](https://ascon.iaik.tugraz.at/): Ascon-128 v1.2  
+_Ascon_ has been [selected as new standard](https://csrc.nist.gov/News/2023/lightweight-cryptography-nist-selects-ascon) for [lightweight cryptography](https://csrc.nist.gov/projects/lightweight-cryptography) in the [NIST Lightweight Cryptography competition (2019–2023)](https://csrc.nist.gov/projects/lightweight-cryptography/finalists).
+- [AEGIS](https://cfrg.github.io/draft-irtf-cfrg-aegis-aead/draft-irtf-cfrg-aegis-aead.html): AEGIS Family of Authenticated Encryption Algorithms  
+_AEGIS_ is a family of [authenticated encryption](https://en.wikipedia.org/wiki/Authenticated_encryption) and [hashing](https://en.wikipedia.org/wiki/Cryptographic_hash_function) algorithms designed for high-performance applications. It was chosen in the [CAESAR](https://en.wikipedia.org/wiki/CAESAR_Competition) (Competition for Authenticated Encryption: Security, Applicability, and Robustness) competition. A detailed description of the algorithms can be found [here](https://eprint.iacr.org/2013/695.pdf).
 
 In addition to reading and writing encrypted database files it is also possible to read and write plain unencrypted database files.
 
@@ -178,9 +191,12 @@ The following people have contributed to **SQLite3 Multiple Ciphers NuGet**:
 
 - [Brice Lambson](https://github.com/bricelam)
 - [Josh Menzel](https://github.com/jammerxd)
+- [Eric Sink](https://github.com/ericsink)
+- [Ulrich Telle](https://github.com/utelle)
 
 ## See also
 
 - [SQLite3 Multiple Ciphers](https://utelle.github.io/SQLite3MultipleCiphers/)
 - [Microsoft.Data.Sqlite](https://learn.microsoft.com/dotnet/standard/data/sqlite/)
 - [SQLite-net](https://github.com/praeclarum/sqlite-net#readme)
+- [More SQLite Encryption in .NET](https://www.bricelam.net/2023/11/10/more-sqlite-encryption.html)

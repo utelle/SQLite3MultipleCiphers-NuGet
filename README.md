@@ -117,7 +117,7 @@ using (db)
 
 This NuGet package supports access to **encrypted** [SQLite](https://www.sqlite.org) databases from .NET applications. It is based on the project [SQLite3 Multiple Ciphers](https://utelle.github.io/SQLite3MultipleCiphers/).
 
-**SQLite3 Multiple Ciphers** is an extension to the public domain version of SQLite that allows applications to read and write encrypted database files. Currently 5 different encryption cipher schemes are supported:
+**SQLite3 Multiple Ciphers** is an extension to the public domain version of SQLite that allows applications to read and write encrypted database files. Currently 7 different encryption cipher schemes are supported:
 
 - [wxSQLite3](https://github.com/utelle/wxsqlite3): AES 128 Bit CBC - No HMAC
 - [wxSQLite3](https://github.com/utelle/wxsqlite3): AES 256 Bit CBC - No HMAC  
@@ -130,6 +130,8 @@ All _SQLCipher_ variants (from version 1 up to version 4) can be accessed.
 Supported for compatibility with earlier _System.Data.SQLite_ versions only. Don't use it in new projects. Since early 2020 the official **System.Data.SQLite** distribution no longer includes the RC4 encryption extension.
 - [Ascon](https://ascon.iaik.tugraz.at/): Ascon-128 v1.2  
 _Ascon_ has been [selected as new standard](https://csrc.nist.gov/News/2023/lightweight-cryptography-nist-selects-ascon) for [lightweight cryptography](https://csrc.nist.gov/projects/lightweight-cryptography) in the [NIST Lightweight Cryptography competition (2019–2023)](https://csrc.nist.gov/projects/lightweight-cryptography/finalists).
+- [AEGIS](https://cfrg.github.io/draft-irtf-cfrg-aegis-aead/draft-irtf-cfrg-aegis-aead.html): AEGIS Family of Authenticated Encryption Algorithms  
+_AEGIS_ is a family of [authenticated encryption](https://en.wikipedia.org/wiki/Authenticated_encryption) and [hashing](https://en.wikipedia.org/wiki/Cryptographic_hash_function) algorithms designed for high-performance applications. It was chosen in the [CAESAR](https://en.wikipedia.org/wiki/CAESAR_Competition) (Competition for Authenticated Encryption: Security, Applicability, and Robustness) competition. A detailed description of the algorithms can be found [here](https://eprint.iacr.org/2013/695.pdf).
 
 In addition to reading and writing encrypted database files it is also possible to read and write plain unencrypted database files.
 

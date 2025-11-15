@@ -1,0 +1,49 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: Build & Publish NuGet packages
+
+on: workflow_dispatch
+
+jobs:
+  build-and-publish:
+    permissions:
+      id-token: write  # enable GitHub OIDC token issuance for this job
+    runs-on: windows-latest
+    steps:
+    - name: Checkout source
+      uses: actions/checkout@v4
+    - name: Checkout binaries
+      uses: actions/checkout@v4
+      with:
+        repository: utelle/SQLite3MultipleCiphers-cb
+        ref: sqlite3mc
+        path: cb
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+    - name: Setup .NET for Android and iOS
+      run: dotnet workload install android ios
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+    - name: Show list of NuGet packages
+      run: Get-ChildItem -Recurse "artifacts\package\release"
+#    - name: Upload artifacts
+#      uses: actions/upload-artifact@v4
+#      with:
+#        name: packages
+#        path: artifacts\package\release\
+
+#    # Get a short-lived NuGet API key
+#    - name: NuGet login (OIDC → temp API key)
+#      uses: NuGet/login@v1
+#      id: login
+#      with:
+#        user: ${{ secrets.NUGET_USER }}
+    
+#    # Push the package
+#    - name: NuGet push
+#      run: dotnet nuget push artifacts/my-sdk.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
