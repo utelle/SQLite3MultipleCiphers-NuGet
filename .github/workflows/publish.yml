@@ -43,6 +43,14 @@ jobs:
       with:
         user: ${{ secrets.NUGET_USER }}
     
-    # Push the package
-    - name: NuGet push
-      run: dotnet nuget push artifacts/package/release/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+    # Push the packages
+    - name: Push NuGet packages
+      shell: pwsh
+      run: |
+        $packages = Get-ChildItem -Path "artifacts/package/release" -Filter "*.nupkg"
+        foreach ($pkg in $packages) {
+            Write-Host "Pushing $($pkg.FullName)"
+            dotnet nuget push $pkg.FullName --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+        }
+      env:
+        NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
