@@ -147,7 +147,10 @@ For accessing a database encrypted with the default cipher scheme specifying jus
 using var connection = new SqliteConnection("Data Source=example.db;Password=Password12!");
 ```
 
-However, for database files encrypted with a non-default cipher scheme the connection string looks a bit different. The following examples illustrate two common use cases.
+**Note**:
+The password property will only work (again) with _.Net 10_, which was released in November 2025. In earlier _.Net_ versions, this unfortunately leads to an error because the behavior of the underlying SQLite library has changed since version 3.48.0.
+
+For database files encrypted with a non-default cipher scheme the connection string looks a bit different. The following examples illustrate two common use cases.
 
 ### How to open an existing database encrypted with _SQLCipher_
 

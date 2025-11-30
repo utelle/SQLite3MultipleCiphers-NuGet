@@ -15,8 +15,8 @@ This library provides C#/.NET bindings for [SQLite3 Multiple Ciphers](https://ut
 
 ## Version history
 
-* 2.2.5.0-rc.1 - *November 2025*
-  - Update to SQLite3 Multiple Ciphers version 2.2.5 and SQLite version 3.51.0
+* 2.2.6 - *November 2025*
+  - First official release, based on _SQLite3 Multiple Ciphers_ version 2.2.6 and _SQLite_ version 3.51.1
 
 ## Installation
 
@@ -112,7 +112,7 @@ using (db)
     }
 }
 ```
-## <a name="encryption" />Passphrase based database encryption support
+## Passphrase based database encryption support
 
 This NuGet package supports access to **encrypted** [SQLite](https://www.sqlite.org) databases from .NET applications. It is based on the project [SQLite3 Multiple Ciphers](https://utelle.github.io/SQLite3MultipleCiphers/).
 
@@ -146,7 +146,10 @@ For accessing a database encrypted with the default cipher scheme specifying jus
 using var connection = new SqliteConnection("Data Source=example.db;Password=Password12!");
 ```
 
-However, for database files encrypted with a non-default cipher scheme the connection string looks a bit different. The following examples illustrate two common use cases.
+**Note**:
+The password property will only work (again) with _.Net 10_, which was released in November 2025. In earlier _.Net_ versions, this unfortunately leads to an error because the behavior of the underlying SQLite library has changed since version 3.48.0.
+
+For database files encrypted with a non-default cipher scheme the connection string looks a bit different. The following examples illustrate two common use cases.
 
 ### How to open an existing database encrypted with _SQLCipher_
 
