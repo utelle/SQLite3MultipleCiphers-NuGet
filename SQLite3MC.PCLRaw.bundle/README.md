@@ -15,8 +15,8 @@ This library provides C#/.NET bindings for [SQLite3 Multiple Ciphers](https://ut
 
 ## Version history
 
-* 2.2.6 - *November 2025*
-  - First official release, based on _SQLite3 Multiple Ciphers_ version 2.2.6 and _SQLite_ version 3.51.1
+* 2.2.7 - *January 2026*
+  - Update to _SQLite3 Multiple Ciphers_ version 2.2.7 based on _SQLite_ version 3.51.2
 
 ## Installation
 
