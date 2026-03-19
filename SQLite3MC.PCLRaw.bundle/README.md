@@ -15,8 +15,9 @@ This library provides C#/.NET bindings for [SQLite3 Multiple Ciphers](https://ut
 
 ## Version history
 
-* 2.3.1 - *March 2026*
-  - Update to _SQLite3 Multiple Ciphers_ version 2.3.1 based on _SQLite_ version 3.51.3 (due to withdrawal of _SQLite_ version 3.52.0)
+* 2.3.2 - *March 2026*
+  - Update to _SQLite3 Multiple Ciphers_ version 2.3.2 based on _SQLite_ version 3.51.3
+  - Fixed issue [#228](https://github.com/utelle/SQLite3MultipleCiphers/issues/228) - Function `sqlite3mc_cipher_name` not thread-safe. This could cause runtime errors in multi-threaded environments.
 
 ## Installation
 
