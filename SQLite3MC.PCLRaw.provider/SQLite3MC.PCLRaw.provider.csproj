@@ -5,6 +5,7 @@
     <RootNamespace>SQLitePCL</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Description>A SQLitePCLRaw provider that enables access to the native sqlite3mc library included by the SQLite3MC.PCLRaw.lib package.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>

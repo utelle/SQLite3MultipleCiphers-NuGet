@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Description>Native binaries of the sqlite3mc library. Use SQLite3MC.PCLRaw.provider to access the library.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <IncludeBuildOutput>False</IncludeBuildOutput>
     <IncludeSymbols>False</IncludeSymbols>
   </PropertyGroup>
