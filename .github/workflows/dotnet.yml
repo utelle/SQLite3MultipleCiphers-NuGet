@@ -14,11 +14,51 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/checkout@v4
-      with:
-        repository: utelle/SQLite3MultipleCiphers-cb
-        ref: sqlite3mc
-        path: cb
+
+#    - uses: actions/checkout@v4
+#      with:
+#        repository: utelle/SQLite3MultipleCiphers-cb
+#        ref: sqlite3mc
+#        path: cb
+
+    - name: Extract version from Versions.props
+      id: version
+      run: |
+        [xml]$xml = Get-Content Versions.props
+        $version = $xml.Project.PropertyGroup.Sqlite3MCVersion
+        echo "VERSION=$version" >> $env:GITHUB_ENV
+        echo "version=$version" >> $env:GITHUB_OUTPUT
+      shell: pwsh
+
+    - name: Download release archive
+      run: |
+        VERSION=${{ steps.version.outputs.version }}
+        TAG=v$VERSION
+        ARCHIVE=release-$TAG.tar.gz
+
+        curl -L \
+          -o $ARCHIVE \
+          https://github.com/utelle/SQLite3MultipleCiphers-cb/releases/download/$TAG/$ARCHIVE
+
+      shell: bash
+
+    - name: Verify archive exists
+      run: |
+        if [ ! -f "$ARCHIVE" ]; then
+          echo "Archive not found!"
+          exit 1
+        fi
+
+    - name: Extract binaries
+      run: |
+        VERSION=${{ steps.version.outputs.version }}
+        TAG=v$VERSION
+
+        mkdir cb
+        tar -xzf release-$TAG.tar.gz -C cb
+      shell: bash
+
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
