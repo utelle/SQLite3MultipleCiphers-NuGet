@@ -36,7 +36,6 @@ jobs:
         VERSION=${{ steps.version.outputs.version }}
         TAG=v$VERSION
         ARCHIVE=release-$TAG.tar.gz
-
         curl -L \
           -o $ARCHIVE \
           https://github.com/utelle/SQLite3MultipleCiphers-cb/releases/download/$TAG/$ARCHIVE
@@ -44,6 +43,9 @@ jobs:
     - name: Verify archive exists
       shell: bash
       run: |
+        VERSION=${{ steps.version.outputs.version }}
+        TAG=v$VERSION
+        ARCHIVE=release-$TAG.tar.gz
         if [ ! -f "$ARCHIVE" ]; then
           echo "Archive not found!"
           exit 1
@@ -54,9 +56,10 @@ jobs:
       run: |
         VERSION=${{ steps.version.outputs.version }}
         TAG=v$VERSION
+        ARCHIVE=release-$TAG.tar.gz
 
         mkdir cb
-        tar -xzf release-$TAG.tar.gz -C cb
+        tar -xzf $ARCHIVE -C cb
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
