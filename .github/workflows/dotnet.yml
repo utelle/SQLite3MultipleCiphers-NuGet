@@ -31,6 +31,7 @@ jobs:
       shell: pwsh
 
     - name: Download release archive
+      shell: bash
       run: |
         VERSION=${{ steps.version.outputs.version }}
         TAG=v$VERSION
@@ -40,9 +41,8 @@ jobs:
           -o $ARCHIVE \
           https://github.com/utelle/SQLite3MultipleCiphers-cb/releases/download/$TAG/$ARCHIVE
 
-      shell: bash
-
     - name: Verify archive exists
+      shell: bash
       run: |
         if [ ! -f "$ARCHIVE" ]; then
           echo "Archive not found!"
@@ -50,14 +50,13 @@ jobs:
         fi
 
     - name: Extract binaries
+      shell: bash
       run: |
         VERSION=${{ steps.version.outputs.version }}
         TAG=v$VERSION
 
         mkdir cb
         tar -xzf release-$TAG.tar.gz -C cb
-      shell: bash
-
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
