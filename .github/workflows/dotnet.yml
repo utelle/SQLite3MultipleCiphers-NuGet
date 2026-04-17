@@ -57,9 +57,8 @@ jobs:
         VERSION=${{ steps.version.outputs.version }}
         TAG=v$VERSION
         ARCHIVE=release-$TAG.tar.gz
-
-        mkdir cb
-        tar -xzf $ARCHIVE -C cb
+        mkdir -p cb/bld/bin
+        tar -xzf release-$TAG.tar.gz -C cb/bld/bin
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
