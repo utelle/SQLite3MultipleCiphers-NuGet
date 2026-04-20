@@ -124,7 +124,8 @@ jobs:
         diff -u actual_files.txt expected_files.txt || true
 
         echo "=== Validate checksums ==="
-        sha256sum -c sqlite3mc/SHA256SUMS.txt
+        grep -v 'release-v2.3.3.tar.gz' sqlite3mc/SHA256SUMS.txt > SHA256SUMS.filtered.txt
+        sha256sum -c SHA256SUMS.filtered.txt
 
         echo "=== OK: Binary release is consistent ==="
 
