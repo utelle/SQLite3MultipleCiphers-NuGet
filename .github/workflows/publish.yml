@@ -88,13 +88,14 @@ jobs:
     # MODE INFO
     # -------------------------------------------------
     - name: Release mode info
+      shell: bash
       run: |
         VERSION=${{ steps.version.outputs.version }}
         TAG=v$VERSION
         ARCHIVE=release-$TAG.tar.gz
         echo "=============================="
         echo "MODE: $MODE"
-        echo "VERSION: $VERSION
+        echo "VERSION: $VERSION"
         echo "ARCHIVE: $ARCHIVE"
         echo "=============================="
 
