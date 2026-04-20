@@ -13,13 +13,8 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v4
-
-#    - uses: actions/checkout@v4
-#      with:
-#        repository: utelle/SQLite3MultipleCiphers-cb
-#        ref: sqlite3mc
-#        path: cb
+    - name: Checkout source
+      uses: actions/checkout@v6
 
     - name: Extract version from Versions.props
       id: version
@@ -61,18 +56,22 @@ jobs:
         tar -xzf release-$TAG.tar.gz -C cb/bld/bin
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 9.0.x
     - run: dotnet workload install android ios
+
     - name: Restore dependencies
       run: dotnet restore
+
     - name: Build
       run: dotnet build --no-restore --configuration Release
-    - uses: actions/upload-artifact@v4
+
+    - uses: actions/upload-artifact@v7
       with:
         name: packages
         path: artifacts\package\release\
+
     - name: Test
       run: dotnet test Tests\Tests --verbosity normal
 
@@ -81,8 +80,8 @@ jobs:
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/dotnet/sdk:9.0-alpine
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/download-artifact@v4
+    - uses: actions/checkout@v6
+    - uses: actions/download-artifact@v8
       with:
         name: packages
         path: artifacts/package/release/
@@ -93,12 +92,12 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 9.0.x
-    - uses: actions/download-artifact@v4
+    - uses: actions/download-artifact@v8
       with:
         name: packages
         path: artifacts/package/release/
@@ -109,12 +108,12 @@ jobs:
     needs: build
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 9.0.x
-    - uses: actions/download-artifact@v4
+    - uses: actions/download-artifact@v8
       with:
         name: packages
         path: artifacts/package/release/

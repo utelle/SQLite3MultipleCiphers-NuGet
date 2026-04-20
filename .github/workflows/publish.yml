@@ -3,7 +3,17 @@
 
 name: Build & Publish NuGet packages
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Release mode"
+        required: true
+        type: choice
+        default: dry-run
+        options:
+          - dry-run
+          - release
 
 permissions:
   id-token: write
@@ -16,28 +26,90 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: Checkout source
-      uses: actions/checkout@v4
-    - name: Checkout binaries
-      uses: actions/checkout@v4
-      with:
-        repository: utelle/SQLite3MultipleCiphers-cb
-        ref: sqlite3mc
-        path: cb
+      uses: actions/checkout@v6
+
+    - name: Extract version from Versions.props
+      id: version
+      run: |
+        [xml]$xml = Get-Content Versions.props
+        $version = $xml.Project.PropertyGroup.Sqlite3MCVersion
+        echo "VERSION=$version" >> $env:GITHUB_ENV
+        echo "version=$version" >> $env:GITHUB_OUTPUT
+      shell: pwsh
+
+    - name: Download release archive
+      shell: bash
+      run: |
+        VERSION=${{ steps.version.outputs.version }}
+        TAG=v$VERSION
+        ARCHIVE=release-$TAG.tar.gz
+        curl -L \
+          -o $ARCHIVE \
+          https://github.com/utelle/SQLite3MultipleCiphers-cb/releases/download/$TAG/$ARCHIVE
+
+    - name: Verify archive exists
+      shell: bash
+      run: |
+        VERSION=${{ steps.version.outputs.version }}
+        TAG=v$VERSION
+        ARCHIVE=release-$TAG.tar.gz
+        if [ ! -f "$ARCHIVE" ]; then
+          echo "Archive not found!"
+          exit 1
+        fi
+
+    - name: Extract binaries
+      shell: bash
+      run: |
+        VERSION=${{ steps.version.outputs.version }}
+        TAG=v$VERSION
+        ARCHIVE=release-$TAG.tar.gz
+        mkdir -p cb/bld/bin
+        tar -xzf release-$TAG.tar.gz -C cb/bld/bin
+
     - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 9.0.x
+
     - name: Setup .NET for Android and iOS
       run: dotnet workload install android ios
+
     - name: Restore dependencies
       run: dotnet restore
+
     - name: Build
       run: dotnet build --no-restore --configuration Release
+
     - name: Show list of NuGet packages
       run: Get-ChildItem -Recurse "artifacts\package\release"
 
+    # -------------------------------------------------
+    # MODE INFO
+    # -------------------------------------------------
+    - name: Release mode info
+      run: |
+        VERSION=${{ steps.version.outputs.version }}
+        TAG=v$VERSION
+        ARCHIVE=release-$TAG.tar.gz
+        echo "=============================="
+        echo "MODE: $MODE"
+        echo "VERSION: $VERSION
+        echo "ARCHIVE: $ARCHIVE"
+        echo "=============================="
+
+        case "$MODE" in
+          dry-run)
+            echo "🧪 DRY RUN MODE (build tested, no release)"
+            ;;
+          release)
+            echo "🚀 REAL RELEASE MODE (will publish)"
+            ;;
+        esac
+
     # Get a short-lived NuGet API key
     - name: NuGet login (OIDC → temp API key)
+      if: ${{ inputs.mode == 'release' }}
       uses: NuGet/login@v1
       id: login
       with:
@@ -45,6 +117,7 @@ jobs:
     
     # Push the packages
     - name: Push NuGet packages
+      if: ${{ inputs.mode == 'release' }}
       shell: pwsh
       run: |
         $packages = Get-ChildItem -Path "artifacts/package/release" -Filter "*.nupkg"
