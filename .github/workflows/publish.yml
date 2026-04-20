@@ -120,7 +120,8 @@ jobs:
         jq --version
         jq -r '.files[]' sqlite3mc/manifest.json | sort > expected_files.txt
 
-        diff actual_files.txt expected_files.txt
+        echo "=== DIFF OUTPUT ==="
+        diff -u actual_files.txt expected_files.txt || true
 
         echo "=== Validate checksums ==="
         cd sqlite3mc
