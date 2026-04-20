@@ -103,8 +103,8 @@ jobs:
         echo "=== Validate manifest version ==="
         MANIFEST_VERSION=$(jq -r '.version' "$MANIFEST")
 
-        if [ "$MANIFEST_VERSION" != "$VERSION" ]; then
-          echo "ERROR: Version mismatch (manifest=$MANIFEST_VERSION, expected=$VERSION)"
+        if [ "$MANIFEST_VERSION" != "v$VERSION" ]; then
+          echo "ERROR: Version mismatch (manifest=$MANIFEST_VERSION, expected=v$VERSION)"
           exit 1
         fi
 
