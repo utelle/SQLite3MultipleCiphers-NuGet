@@ -71,6 +71,10 @@ jobs:
         mkdir -p cb/bld/bin
         tar -xzf release-$TAG.tar.gz -C cb/bld/bin
 
+        mkdir -p cb/bld/bin/sqlite3mc
+        mv manifest.json cb/bld/bin/sqlite3mc/
+        mv SHA256SUMS.txt cb/bld/bin/sqlite3mc/
+
     - uses: dcarbone/install-jq-action@v2
 
     - name: Validate binary release consistency
