@@ -24,6 +24,9 @@ jobs:
     permissions:
       id-token: write  # enable GitHub OIDC token issuance for this job
     runs-on: windows-latest
+    env:
+      MODE: ${{ inputs.mode }}
+
     steps:
     - name: Checkout source
       uses: actions/checkout@v6
@@ -43,9 +46,10 @@ jobs:
         VERSION=${{ steps.version.outputs.version }}
         TAG=v$VERSION
         ARCHIVE=release-$TAG.tar.gz
-        curl -L \
-          -o $ARCHIVE \
-          https://github.com/utelle/SQLite3MultipleCiphers-cb/releases/download/$TAG/$ARCHIVE
+        BASE=https://github.com/utelle/SQLite3MultipleCiphers-cb/releases/download/$TAG
+        curl -L -o $ARCHIVE $BASE/$ARCHIVE
+        curl -L -o SHA256SUMS.txt $BASE/SHA256SUMS.txt
+        curl -L -o manifest.json $BASE/manifest.json
 
     - name: Verify archive exists
       shell: bash
@@ -66,6 +70,60 @@ jobs:
         ARCHIVE=release-$TAG.tar.gz
         mkdir -p cb/bld/bin
         tar -xzf release-$TAG.tar.gz -C cb/bld/bin
+
+    - uses: dcarbone/install-jq-action@v2
+
+    - name: Validate binary release consistency
+      shell: bash
+      run: |
+        set -e
+
+        echo "=== Load version ==="
+        VERSION=${{ steps.version.outputs.version }}
+        echo "Expected version: $VERSION"
+
+        echo "=== Check manifest exists ==="
+        MANIFEST="cb/bld/bin/sqlite3mc/manifest.json"
+        CHECKSUMS="cb/bld/bin/sqlite3mc/SHA256SUMS.txt"
+
+        if [ ! -f "$MANIFEST" ]; then
+          echo "ERROR: Manifest not found"
+          exit 1
+        fi
+
+        if [ ! -f "$CHECKSUMS" ]; then
+          echo "ERROR: Checksums file not found"
+          exit 1
+        fi
+
+        echo "=== Validate manifest version ==="
+        MANIFEST_VERSION=$(jq -r '.version' "$MANIFEST")
+
+        if [ "$MANIFEST_VERSION" != "$VERSION" ]; then
+          echo "ERROR: Version mismatch (manifest=$MANIFEST_VERSION, expected=$VERSION)"
+          exit 1
+        fi
+
+        echo "=== Validate file list ==="
+        cd cb/bld/bin
+
+        # Collect all files in release (without metadata files)
+        find sqlite3mc -type f \
+          ! -name "SHA256SUMS.txt" \
+          ! -name "manifest.json" \
+          | sort > actual_files.txt
+
+        jq --version
+        jq -r '.files[]' sqlite3mc/manifest.json | sort > expected_files.txt
+
+        diff actual_files.txt expected_files.txt
+
+        echo "=== Validate checksums ==="
+        cd sqlite3mc
+
+        sha256sum -c SHA256SUMS.txt
+
+        echo "=== OK: Binary release is consistent ==="
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v5
