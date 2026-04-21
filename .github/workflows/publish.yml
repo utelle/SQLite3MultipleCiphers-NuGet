@@ -17,12 +17,15 @@ on:
 
 permissions:
   id-token: write
-  contents: read
+  contents: write
+  attestations: write
 
 jobs:
   build-and-publish:
     permissions:
       id-token: write  # enable GitHub OIDC token issuance for this job
+      contents: write
+      attestations: write
     runs-on: windows-latest
     env:
       MODE: ${{ inputs.mode }}
@@ -170,6 +173,13 @@ jobs:
             ;;
         esac
 
+    - name: Generate SLSA provenance (NuGet packages)
+      if: ${{ inputs.mode == 'release' }}
+      uses: actions/attest-build-provenance@v2
+      with:
+        subject-path: |
+          artifacts/package/release/**/*.nupkg
+
     # Get a short-lived NuGet API key
     - name: NuGet login (OIDC → temp API key)
       if: ${{ inputs.mode == 'release' }}
@@ -190,3 +200,53 @@ jobs:
         }
       env:
         NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
+
+    - name: Create GitHub Release
+      if: ${{ inputs.mode == 'release' }}
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: v${{ steps.version.outputs.version }}
+        name: SQLite3MC ${{ steps.version.outputs.version }} NuGet Packages
+        body: |
+          ## Changes
+
+          - See detailed [change log](https://github.com/utelle/SQLite3MultipleCiphers-NuGet/blob/main/CHANGELOG.md#v${{ steps.version.outputs.version }})
+          
+          ## NuGet Packages
+
+          This release is available on NuGet.org:
+
+          - https://www.nuget.org/packages?q=sqlite3mc
+
+          The project consists of the following 3 NuGet packages (downloadable from [NuGet.org](https://nuget.org)):
+
+          - [SQLite3MC.PCLRaw.bundle](https://www.nuget.org/packages/SQLite3MC.PCLRaw.bundle), depends on `provider` and `lib`
+          - [SQLite3MC.PCLRaw.provider](https://www.nuget.org/packages/SQLite3MC.PCLRaw.provider), depends on [SQLitePCLRaw.core](https://www.nuget.org/packages/SQLitePCLRaw.core/) (>= 3.0.2)
+          - [SQLite3MC.PCLRaw.lib](https://www.nuget.org/packages/SQLite3MC.PCLRaw.lib), no dependencies
+
+          ## Deprecated packages `SQLitePCLRaw.*e_sqlite3mc`
+
+          The following packages are deprecated and no longer maintained:
+
+          - [SQLitePCLRaw.bundle_e_sqlite3mc](https://www.nuget.org/packages/SQLitePCLRaw.bundle_e_sqlite3mc)
+          - [SQLitePCLRaw.provider.e_sqlite3mc](https://www.nuget.org/packages/SQLitePCLRaw.provider.e_sqlite3mc)
+          - [SQLitePCLRaw.lib.e_sqlite3mc](https://www.nuget.org/packages/SQLitePCLRaw.lib.e_sqlite3mc)
+
+          Please use the packages [SQLite3MC.PCLRaw.bundle](https://www.nuget.org/packages/SQLite3MC.PCLRaw.bundle), [SQLite3MC.PCLRaw.provider](https://www.nuget.org/packages/SQLite3MC.PCLRaw.provider), and [SQLite3MC.PCLRaw.lib](https://www.nuget.org/packages/SQLite3MC.PCLRaw.lib) instead.
+
+          ## Build & Integrity
+
+          - Native binaries are validated using SHA256 checksums
+          - NuGet packages are built and published exclusively through GitHub Actions CI
+          - Builds are executed in a controlled, ephemeral CI environment
+          - Build inputs (source revision, workflow definition, and dependencies) are recorded as part of the build process
+          - GitHub build provenance is generated and cryptographically attested (SLSA-aligned provenance)
+
+          ### Verification
+
+          Build provenance can be verified using the GitHub CLI:
+          ```
+          gh attestation verify <package.nupkg>
+          ```
+
+          Alternatively, attestations can be inspected via the corresponding GitHub Actions workflow run in the repository.
