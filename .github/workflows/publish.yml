@@ -177,7 +177,7 @@ jobs:
 
     - name: Generate SLSA provenance (NuGet packages)
       if: ${{ inputs.mode == 'release' }}
-      uses: actions/attest-build-provenance@v2
+      uses: actions/attest-build-provenance@v4
       with:
         subject-path: |
           artifacts/package/release/**/*.nupkg
@@ -205,7 +205,7 @@ jobs:
 
     - name: Create GitHub Release
       if: ${{ inputs.mode == 'release' }}
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v3
       with:
         tag_name: v${{ steps.version.outputs.version }}
         name: SQLite3MC ${{ steps.version.outputs.version }} NuGet Packages
