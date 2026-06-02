@@ -74,17 +74,16 @@ jobs:
     # provenance, instead of trusting only checksums shipped in the same
     # release. Requires release.yml in -cb to attest (see that repo).
     # -------------------------------------------------
-    # Uncomment step as soon as attestation in -cb has been implemented
-    #- name: Verify build provenance of upstream binaries
-    #  shell: bash
-    #  env:
-    #    GH_TOKEN: ${{ github.token }}
-    #  run: |
-    #    VERSION=${{ steps.version.outputs.version }}
-    #    TAG=v$VERSION
-    #    ARCHIVE=release-$TAG.tar.gz
-    #    gh attestation verify "$ARCHIVE" \
-    #      --repo utelle/SQLite3MultipleCiphers-cb
+    - name: Verify build provenance of upstream binaries
+      shell: bash
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        VERSION=${{ steps.version.outputs.version }}
+        TAG=v$VERSION
+        ARCHIVE=release-$TAG.tar.gz
+        gh attestation verify "$ARCHIVE" \
+          --repo utelle/SQLite3MultipleCiphers-cb
 
     - name: Extract binaries
       shell: bash
