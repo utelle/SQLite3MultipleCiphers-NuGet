@@ -15,10 +15,8 @@ This library provides C#/.NET bindings for [SQLite3 Multiple Ciphers](https://ut
 
 ## Version history
 
-* 2.3.4 - *May 2026*
-  - Update to _SQLite3 Multiple Ciphers_ version 2.3.4 based on _SQLite_ version 3.53.1
-  - Fixed issue [#232](https://github.com/utelle/SQLite3MultipleCiphers/issues/232) - Zero out one-time-keys (for cipher schemes `chacha20`, `aegis`, and `ascon128`) after encrypt/decrypt operation
-  - Resolved issue [#233](https://github.com/utelle/SQLite3MultipleCiphers/issues/233) - Add support for specifying plaintext header size in non-legacy mode of the SQLCipher cipher scheme. This option was supported only for legacy mode version 4 (legacy=4), but there is no reason to not support it for non-legacy mode.
+* 2.3.5 - *June 2026*
+  - Update to _SQLite3 Multiple Ciphers_ version 2.3.5 based on _SQLite_ version 3.53.2
 
 ## Installation
 
