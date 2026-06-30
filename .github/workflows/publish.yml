@@ -241,7 +241,7 @@ jobs:
       with:
         api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
         organization-id: '${{ vars.SIGNPATH_ORGANIZATION_ID }}'
-        project-slug: 'SQLite3MultipleCiphers-NuGet'
+        project-slug: 'SQLite3MultipleCiphers'
         artifact-configuration-slug: 'nuget-packages'
         signing-policy-slug: ${{ inputs.mode == 'release' && 'release-signing' || 'test-signing' }}
         github-artifact-id: '${{ steps.upload-unsigned-nupkg.outputs.artifact-id }}'

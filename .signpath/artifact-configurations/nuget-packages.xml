@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SignPath Artifact Configuration for the SQLite3MultipleCiphers-NuGet repo.
+  Register in the SignPath portal under project "SQLite3MultipleCiphers-NuGet"
+  with the configuration slug "nuget-packages". The portal copy is authoritative.
+
+  <nuget-sign/> performs NuGet *author* signing (equivalent to `nuget sign`),
+  signing each package as a unit. actions/upload-artifact wraps the files in a
+  ZIP, so the root is <zip-file>; the packages appear at the ZIP root by name.
+
+  This repo emits THREE packages per release (confirmed via the project's NuGet
+  release notes): SQLite3MC.PCLRaw.bundle, .provider, .lib.
+
+  IMPORTANT — multi-package matching: a wildcard path WITHOUT max-matches defaults
+  to "exactly one match" and would fail with three packages. max-matches="unbounded"
+  signs all three in ONE signing request (verified against the SignPath syntax
+  docs); min-matches="1" makes an empty artifacts/package/release/ fail loudly.
+
+  Set-based alternative (equivalent, if you prefer explicit package IDs):
+    <nupkg-file-set>
+      <include path="SQLite3MC.PCLRaw.bundle.*.nupkg" />
+      <include path="SQLite3MC.PCLRaw.provider.*.nupkg" />
+      <include path="SQLite3MC.PCLRaw.lib.*.nupkg" />
+      <for-each><nuget-sign /></for-each>
+    </nupkg-file-set>
+
+  Symbol packages (.snupkg) are intentionally NOT covered: the workflow uploads
+  only *.nupkg.
+-->
+<artifact-configuration xmlns="http://signpath.io/artifact-configuration/v1">
+  <zip-file>
+    <nupkg-file path="*.nupkg" min-matches="1" max-matches="unbounded">
+      <nuget-sign />
+    </nupkg-file>
+  </zip-file>
+</artifact-configuration>
