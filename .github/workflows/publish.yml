@@ -167,7 +167,14 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build --no-restore --configuration Release -p:GeneratePackageOnBuild=false
+
+    - name: Show artifacts
+      shell: pwsh
+      run: Get-ChildItem artifacts -Recurse
+
+    - name: Pack
+      run: dotnet pack --no-build --configuration Release
 
     - name: Show list of NuGet packages
       run: Get-ChildItem -Recurse "artifacts\package\release"
