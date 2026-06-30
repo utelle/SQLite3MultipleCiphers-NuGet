@@ -211,6 +211,60 @@ jobs:
       run: Get-ChildItem -Recurse "artifacts\package\release"
 
     # -------------------------------------------------
+    # CODE SIGNING (SignPath) — NuGet author-sign the .nupkg packages HERE,
+    # before the SLSA provenance is generated and before they are pushed, so the
+    # attested AND published package is the SIGNED one. NuGet signing mutates the
+    # package bytes; signing must therefore come first, otherwise the attestation
+    # digest would not match the published file.
+    #
+    #   dry-run -> test-signing    (self-signed TEST cert; exercises the wiring,
+    #                               NOT pushed — see push step, release-only)
+    #   release -> release-signing (production cert; pushed to nuget.org)
+    #
+    # IMPORTANT (nuget.org): it accepts ONLY packages signed with a certificate
+    # registered on the account, and self-signed TEST certificates are rejected.
+    # Once any certificate is registered, ALL pushes must be signed. Register the
+    # SignPath production certificate (DER .cer) on the nuget.org account BEFORE
+    # the first signed `release`. The test-certificate phase therefore validates
+    # signing in `dry-run` only (no push).
+    # -------------------------------------------------
+    - name: Upload unsigned NuGet packages
+      id: upload-unsigned-nupkg
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      with:
+        name: unsigned-nupkg
+        path: artifacts/package/release/*.nupkg
+        if-no-files-found: error
+
+    - name: Submit signing request (SignPath)
+      uses: signpath/github-action-submit-signing-request@b9d91eadd323de506c0c81cf0c7fe7438f3360fd # v2.2
+      with:
+        api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
+        organization-id: '${{ vars.SIGNPATH_ORGANIZATION_ID }}'
+        project-slug: 'SQLite3MultipleCiphers-NuGet'
+        artifact-configuration-slug: 'nuget-packages'
+        signing-policy-slug: ${{ inputs.mode == 'release' && 'release-signing' || 'test-signing' }}
+        github-artifact-id: '${{ steps.upload-unsigned-nupkg.outputs.artifact-id }}'
+        wait-for-completion: true
+        # release-signing typically requires manual approval -> wait longer
+        wait-for-completion-timeout-in-seconds: 1800
+        output-artifact-directory: 'signed-nupkg'
+
+    - name: Replace packages with signed versions
+      shell: pwsh
+      run: |
+        # Overwrite the unsigned .nupkg with the signed ones (same file names) so
+        # the provenance attestation and `dotnet nuget push` use the signed bytes.
+        Copy-Item signed-nupkg/*.nupkg artifacts/package/release/ -Force
+        Get-ChildItem artifacts/package/release/*.nupkg
+
+    - name: Upload signed NuGet packages
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      with:
+        name: signed-nupkg
+        path: artifacts/package/release/*.nupkg
+
+    # -------------------------------------------------
     # MODE INFO
     # -------------------------------------------------
     - name: Release mode info
