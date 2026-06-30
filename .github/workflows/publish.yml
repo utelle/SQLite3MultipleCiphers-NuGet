@@ -171,7 +171,38 @@ jobs:
 
     - name: Show artifacts
       shell: pwsh
-      run: Get-ChildItem artifacts -Recurse
+      run: Get-ChildItem -Recurse artifacts -Include *.dll | Select-Object FullName
+
+    - name: Upload signing artifacts
+      id: upload-unsigned-win
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      with:
+        name: dlls-to-sign
+        path: |
+          artifacts/bin/**/SQLitePCLRaw.batteries_v2.dll
+          artifacts/bin/**/SQLite3MC.PCLRaw.provider.dll
+
+    - name: Submit signing request (SignPath)
+      uses: signpath/github-action-submit-signing-request@b9d91eadd323de506c0c81cf0c7fe7438f3360fd # v2.2
+      with:
+        api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
+        organization-id: '${{ vars.SIGNPATH_ORGANIZATION_ID }}'
+        project-slug: 'SQLite3MultipleCiphers'
+        artifact-configuration-slug: 'windows-binaries-cb'
+        signing-policy-slug: ${{ inputs.mode == 'release' && 'release-signing' || 'test-signing' }}
+        github-artifact-id: '${{ steps.upload-unsigned-win.outputs.artifact-id }}'
+        wait-for-completion: true
+        # release-signing typically requires manual approval -> wait longer
+        wait-for-completion-timeout-in-seconds: 1800
+        output-artifact-directory: 'signed-win'
+
+    - name: Restore signed Windows binaries
+      shell: pwsh
+      run: |
+        # SignPath returns the same tree structure; overlay the signed PE files
+        # back over cb/bld/bin so "Upload artifacts" carries the signed ones.
+        Copy-Item signed-win/* artifacts/bin/ -Recurse -Force
+        Get-ChildItem -Recurse artifacts/bin -Include *.dll,*.exe | Select-Object FullName
 
     - name: Pack
       run: dotnet pack --no-build --configuration Release

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SignPath Artifact Configuration for the SQLite3MultipleCiphers-cb repo.
+  Register in the SignPath portal under project "SQLite3MultipleCiphers-cb" with
+  the configuration slug "windows-binaries". The portal copy is authoritative.
+
+  The workflow uploads the whole cb/bld/bin tree via actions/upload-artifact,
+  which wraps it in a ZIP -> root element <zip-file>. Recursive "**" matching is
+  supported by SignPath (verified against the artifact-configuration syntax
+  docs), so "**/*.dll" signs every native DLL regardless of the RID sub-directory
+  layout (expected: runtimes/<rid>/native/e_sqlite3mc.dll, DLLs only - no EXE).
+
+  min-matches="1" on the DLL pattern fails the request loudly if the build
+  produced no Windows DLL; the EXE pattern stays optional (none are expected).
+
+  BEFORE GO-LIVE (confirm from the real repo's cb/bld/ generator + win_*.bat):
+    (a) the native base name (e_sqlite3mc vs e_sqlite3 - either way "**/*.dll"
+        still matches),
+    (b) the exact RID set,
+    (c) whether any THIRD-PARTY DLLs (ICU icu*.dll / vcruntime) land in the tree.
+  If vendor DLLs are present, do NOT let "**/*.dll" sign them: narrow the signing
+  include to "**/e_sqlite3mc.dll" and add a verify-only set for the vendor DLLs,
+  e.g.:
+    <pe-file-set>
+      <include path="**/icu*.dll" min-matches="0" max-matches="unbounded" />
+      <for-each><authenticode-verify /></for-each>
+    </pe-file-set>
+  (A file must not be matched by both a sign set and a verify set.)
+-->
+<artifact-configuration xmlns="http://signpath.io/artifact-configuration/v1">
+  <zip-file>
+    <pe-file-set>
+      <include path="**/*.dll" min-matches="1" max-matches="unbounded" />
+      <include path="**/*.exe" min-matches="0" max-matches="unbounded" />
+      <for-each>
+        <authenticode-sign />
+      </for-each>
+    </pe-file-set>
+  </zip-file>
+</artifact-configuration>
