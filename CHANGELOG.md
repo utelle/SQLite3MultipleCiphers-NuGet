@@ -7,12 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.4.0] - 2026-07-28
+
+### Changed
+
+- Based on [SQLite3 Multiple Ciphers 2.4.0](https://github.com/utelle/SQLite3MultipleCiphers/releases/tag/v2.4.0) and [SQLite 3.53.4](https://sqlite.org/releaselog/3_53_4.html)
+- Support rekeying for databases in WAL journal mode
+- Added _Value Level Encryption_ (VLE) feature (see [VLE documentation](https://utelle.github.io/SQLite3MultipleCiphers/docs/features/feat_vle/))
+
 ## [2.3.6] - 2026-07-12
 
 ### Changed
 
 - Based on [SQLite3 Multiple Ciphers 2.3.6](https://github.com/utelle/SQLite3MultipleCiphers/releases/tag/v2.3.6) and [SQLite 3.53.3](https://sqlite.org/releaselog/3_53_3.html)
-
 
 ## [2.3.5] - 2026-06-06
 
@@ -81,7 +88,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Based on [SQLite3 Multiple Ciphers 2.2.6](https://github.com/utelle/SQLite3MultipleCiphers/releases/tag/v2.2.6) and [SQLite 3.51.1](https://sqlite.org/releaselog/3_51_1.html)
 
 
-[Unreleased]: ../../compare/v2.3.6...HEAD
+[Unreleased]: ../../compare/v2.4.0...HEAD
+[2.4.0]: ../../compare/v2.3.6...v2.4.0
 [2.3.6]: ../../compare/v2.3.5...v2.3.6
 [2.3.5]: ../../compare/v2.3.4...v2.3.5
 [2.3.4]: ../../compare/v2.3.3...v2.3.4
