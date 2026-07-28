@@ -23,14 +23,17 @@
     <!-- TODO: Can we avoid duplicating these files in the .nupkg? -->
     <None Include="..\cb\bld\bin\sqlite3mc\ios\device\sqlite3mc.a" Pack="True" PackagePath="runtimes\ios-arm\native;runtimes\ios-arm64\native" LinkBase="runtimes\ios-arm64\native" />
     <None Include="..\cb\bld\bin\sqlite3mc\ios\simulator\sqlite3mc.a" Pack="True" PackagePath="runtimes\iossimulator-arm64\native;runtimes\iossimulator-x64\native;runtimes\iossimulator-x86\native" LinkBase="runtimes\iossimulator-x64\native" />
-    <None Include="..\cb\bld\bin\sqlite3mc\linux\armhf\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-arm\native" LinkBase="%(PackagePath)" />
     <None Include="..\cb\bld\bin\sqlite3mc\linux\arm64\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-arm64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\linux\armhf\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-arm\native" LinkBase="%(PackagePath)" />
     <None Include="..\cb\bld\bin\sqlite3mc\linux\armsf\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-armel\native" LinkBase="%(PackagePath)" />
     <None Include="..\cb\bld\bin\sqlite3mc\linux\mips64\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-mips64\native" LinkBase="%(PackagePath)" />
-    <None Include="..\cb\bld\bin\sqlite3mc\linux\musl-armhf\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-musl-arm\native" LinkBase="%(PackagePath)" />
     <None Include="..\cb\bld\bin\sqlite3mc\linux\musl-arm64\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-musl-arm64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\linux\musl-armhf\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-musl-arm\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\linux\musl-riscv64\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-musl-riscv64\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\linux\musl-s390x\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-musl-s390x\native" LinkBase="%(PackagePath)" />
     <None Include="..\cb\bld\bin\sqlite3mc\linux\musl-x64\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-musl-x64\native" LinkBase="%(PackagePath)" />
     <None Include="..\cb\bld\bin\sqlite3mc\linux\ppc64le\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-ppc64le\native" LinkBase="%(PackagePath)" />
+    <None Include="..\cb\bld\bin\sqlite3mc\linux\riscv64\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-riscv64\native" LinkBase="%(PackagePath)" />
     <None Include="..\cb\bld\bin\sqlite3mc\linux\s390x\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-s390x\native" LinkBase="%(PackagePath)" />
     <None Include="..\cb\bld\bin\sqlite3mc\linux\x64\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-x64\native" LinkBase="%(PackagePath)" />
     <None Include="..\cb\bld\bin\sqlite3mc\linux\x86\libsqlite3mc.so" Pack="True" PackagePath="runtimes\linux-x86\native" LinkBase="%(PackagePath)" />

@@ -15,8 +15,10 @@ This library provides C#/.NET bindings for [SQLite3 Multiple Ciphers](https://ut
 
 ## Version history
 
-* 2.3.6 - *July 2026*
-  - Update to _SQLite3 Multiple Ciphers_ version 2.3.6 based on _SQLite_ version 3.53.3
+* 2.4.0 - *July 2026*
+  - Update to _SQLite3 Multiple Ciphers_ version 2.4.0 based on _SQLite_ version 3.53.4
+  - Support rekeying for databases in WAL journal mode
+  - Added _Value Level Encryption_ (VLE) feature (see [VLE documentation](https://utelle.github.io/SQLite3MultipleCiphers/docs/features/feat_vle/))
 
 ## Installation
 
