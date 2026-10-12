@@ -15,10 +15,12 @@ This library provides C#/.NET bindings for [SQLite3 Multiple Ciphers](https://ut
 
 ## Version history
 
-* 2.4.0 - *July 2026*
-  - Update to _SQLite3 Multiple Ciphers_ version 2.4.0 based on _SQLite_ version 3.53.4
-  - Support rekeying for databases in WAL journal mode
-  - Added _Value Level Encryption_ (VLE) feature (see [VLE documentation](https://utelle.github.io/SQLite3MultipleCiphers/docs/features/feat_vle/))
+* 2.6.1 - *October 2026*
+  - Update to _SQLite3 Multiple Ciphers_ version 2.6.1 based on _SQLite_ version 3.54.0
+  - Added hardware acceleration for `chacha20` and `poly1305` algorithms
+  - Added encryption of temporary files with a random key per file
+  - Added pragma `encrypt_temp_db` for forcing encryption of temporary database files
+  - Added new pragmas mc_cpu_info, mc_aes_info, and mc_chacha20_hwaccel
 
 ## Installation
 
