@@ -203,3 +203,9 @@ The following people have contributed to **SQLite3 Multiple Ciphers NuGet**:
 - [Microsoft.Data.Sqlite](https://learn.microsoft.com/dotnet/standard/data/sqlite/)
 - [SQLite-net](https://github.com/praeclarum/sqlite-net#readme)
 - [More SQLite Encryption in .NET](https://www.bricelam.net/2023/11/10/more-sqlite-encryption.html)
+
+## Sponsors/Supporters
+
+<a href="https://signpath.io" title="SignPath"><img src="signpath-logo.svg" width="200"></a>
+
+**Free code signing on Windows provided by [SignPath.io](https://signpath.io), certificate by [SignPath Foundation](https://signpath.org)**

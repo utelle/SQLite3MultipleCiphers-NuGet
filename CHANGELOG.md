@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.6.1] - 2026-10-12
+
+### Changed
+
+- Based on [SQLite3 Multiple Ciphers 2.6.1](https://github.com/utelle/SQLite3MultipleCiphers/releases/tag/v2.6.1) and [SQLite 3.54.0](https://sqlite.org/releaselog/3_54_0.html)
+- Added hardware acceleration for _chacha20_ and _poly1305_ algorithms
+- Added encryption of temporary files with a random key per file
+- Added pragma `encrypt_temp_db` for forcing encryption of temporary database files
+- Added new pragmas `mc_cpu_info`, `mc_aes_info`, and `mc_chacha20_hwaccel`
+
 ## [2.4.0] - 2026-07-28
 
 ### Changed
@@ -88,7 +98,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Based on [SQLite3 Multiple Ciphers 2.2.6](https://github.com/utelle/SQLite3MultipleCiphers/releases/tag/v2.2.6) and [SQLite 3.51.1](https://sqlite.org/releaselog/3_51_1.html)
 
 
-[Unreleased]: ../../compare/v2.4.0...HEAD
+[Unreleased]: ../../compare/v2.6.1...HEAD
+[2.6.1]: ../../compare/v2.4.0...v2.6.1
 [2.4.0]: ../../compare/v2.3.6...v2.4.0
 [2.3.6]: ../../compare/v2.3.5...v2.3.6
 [2.3.5]: ../../compare/v2.3.4...v2.3.5
