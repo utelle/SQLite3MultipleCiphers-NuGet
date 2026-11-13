@@ -110,7 +110,8 @@ Details can be found in the [SQLite3MC change log](https://github.com/utelle/SQL
 - Based on [SQLite3 Multiple Ciphers 2.2.6](https://github.com/utelle/SQLite3MultipleCiphers/releases/tag/v2.2.6) and [SQLite 3.51.1](https://sqlite.org/releaselog/3_51_1.html)
 
 
-[Unreleased]: ../../compare/v2.6.1...HEAD
+[Unreleased]: ../../compare/v2.7.0...HEAD
+[2.7.0]: ../../compare/v2.6.1...v2.7.0
 [2.6.1]: ../../compare/v2.4.0...v2.6.1
 [2.4.0]: ../../compare/v2.3.6...v2.4.0
 [2.3.6]: ../../compare/v2.3.5...v2.3.6
