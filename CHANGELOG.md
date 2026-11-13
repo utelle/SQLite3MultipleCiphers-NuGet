@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.0] - 2026-11-13
+
+### Changed
+
+- Based on [SQLite3 Multiple Ciphers 2.7.0](https://github.com/utelle/SQLite3MultipleCiphers/releases/tag/v2.7.0) and [SQLite 3.54.1](https://sqlite.org/releaselog/3_54_1.html)
+- Focuses on robustness and security hardening.
+- Fixed problems with the _ChaCha20_ hardware acceleration introduced in version 2.6.0
+- Fixed several issues in the VLE feature
+- Fixed many other issues
+
+Details can be found in the [SQLite3MC change log](https://github.com/utelle/SQLite3MultipleCiphers/blob/main/CHANGELOG.md).
+
 ## [2.6.1] - 2026-10-12
 
 ### Changed
