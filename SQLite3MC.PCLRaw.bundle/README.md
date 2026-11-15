@@ -15,14 +15,11 @@ This library provides C#/.NET bindings for [SQLite3 Multiple Ciphers](https://ut
 
 ## Version history
 
-* 2.7.0 - *November 2026*
-  - Update to _SQLite3 Multiple Ciphers_ version 2.7.0 based on _SQLite_ version 3.54.1
-  - Focuses on robustness and security hardening.
-  - Fixed problems with the _ChaCha20_ hardware acceleration introduced in version 2.6.0
-  - Fixed several issues in the VLE feature
-  - Fixed many other issues
+* 2.7.1 - *November 2026*
+  - Update to _SQLite3 Multiple Ciphers_ version 2.7.1 based on _SQLite_ version 3.54.1
+  - Fixed issue [#309](https://github.com/utelle/SQLite3MultipleCiphers/issues/#309) - `sqlite3_rekey` did not use the transient cipher parameter values, if the old and new cipher scheme were identical. Instead the default values were used. The expected behaviour has been restored.
 
-**An update is strongly recommended.**
+**An update is recommended.**
 
 Details can be found in the [change log](https://github.com/utelle/SQLite3MultipleCiphers/blob/main/CHANGELOG.md).
 

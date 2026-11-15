@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.1] - 2026-11-15
+
+### Changed
+
+- Based on [SQLite3 Multiple Ciphers 2.7.1](https://github.com/utelle/SQLite3MultipleCiphers/releases/tag/v2.7.1) and [SQLite 3.54.1](https://sqlite.org/releaselog/3_54_1.html)
+- Fixed issue [#309](https://github.com/utelle/SQLite3MultipleCiphers/issues/#309) - `sqlite3_rekey` did not use the transient cipher parameter values, if the old and new cipher scheme were identical. Instead the default values were used. The expected behaviour has been restored.
+
 ## [2.7.0] - 2026-11-13
 
 ### Changed
